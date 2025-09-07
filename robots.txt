@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rekhadevirekharai628-dotcom.github.io/Ram-ram/sitemap.xml
