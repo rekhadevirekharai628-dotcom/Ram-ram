@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aangan Realestate - Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+:root {
+  --accent: #ffc107;
+  --accent-2: #ff6f00;
+  --font-primary: 'Inter', sans-serif;
+  --font-secondary: 'Playfair Display', serif;
+}
+
+/* Reset & Body */
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:var(--font-primary);background:#000;color:#fff;overflow-x:hidden;scroll-behavior:smooth;}
+
+/* Futuristic Navbar */
+header.navbar{
+  position: sticky;
+  top:0;
+  z-index:1000;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1rem 2rem;
+  background: linear-gradient(90deg, rgba(255,193,7,0.25), rgba(255,140,0,0.2));
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  transition: 0.3s ease-in-out;
+}
+header.navbar:hover{ background: linear-gradient(90deg, rgba(255,193,7,0.35), rgba(255,140,0,0.25)); }
+
+header.navbar .brand{
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  background: linear-gradient(45deg,#ffc107,#ff6f00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  transition: transform 0.3s ease;
+}
+header.navbar .brand:hover{ transform: scale(1.05); }
+
+nav.nav-links{
+  display:flex;
+  gap:2rem;
+}
+nav.nav-links a{
+  color:#fff;
+  font-weight:600;
+  text-decoration:none;
+  position:relative;
+  padding:0.5rem 1rem;
+  border-radius:50px;
+  transition: 0.4s ease;
+  overflow:hidden;
+}
+nav.nav-links a::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: linear-gradient(45deg,#ffc107,#ff6f00,#ffd700,#ffa500);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+  border-radius:50px;
+  z-index:-1;
+}
+nav.nav-links a:hover::before{ transform: scaleX(1); }
+nav.nav-links a:hover{
+  color:#000;
+  text-shadow:0 0 15px #fff, 0 0 25px #ffc107;
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(255,193,7,0.5);
+}
+
+.mobile-toggle{ display:none; font-size:2rem; color:#fff; cursor:pointer; }
+
+/* Hero Section */
+.hero{
+  position:relative;height:100vh;width:100vw;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;
+  perspective:1000px;
+}
+.hero video{
+  position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:-2;filter:brightness(0.6);
+}
+.hero-overlay{
+  position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));z-index:-1;
+}
+.hero-content{
+  z-index:1;max-width:900px;padding:1rem;display:flex;flex-direction:column;align-items:center;gap:1rem;
+  animation: fadeIn 1.5s ease forwards;
+}
+.hero h1{
+  font-family:var(--font-secondary);font-size:4rem;color:var(--accent);
+  text-shadow:0 0 30px rgba(255,193,7,0.7);animation: slideDown 1s ease forwards;
+}
+.hero p{
+  font-size:1.3rem;color:#fff;max-width:700px;text-align:center;line-height:1.6;
+  text-shadow:0 0 10px rgba(0,0,0,0.5);animation: slideUp 1s ease forwards;
+}
+.btn-primary{
+  background:var(--accent);color:#000;padding:0.8rem 2rem;border-radius:10px;font-weight:600;font-size:1rem;
+  border:none;cursor:pointer;transition:0.3s;animation: glow 2s infinite alternate;
+}
+.btn-primary:hover{background:var(--accent-2);color:#fff;transform:scale(1.08);box-shadow:0 0 25px var(--accent);}
+
+/* Scroll down */
+.scroll-down{
+  position:absolute;bottom:20px;font-size:2rem;color:#fff;animation: bounce 2s infinite;
+}
+
+/* Features Section */
+.features{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:2rem;
+  max-width:1000px;
+  margin:3rem auto;
+  padding:0 1rem;
+}
+.feature-card{
+  background:rgba(255,255,255,0.05);border-radius:15px;padding:2rem;text-align:center;
+  box-shadow:0 6px 25px rgba(0,0,0,0.5);transition:0.3s;opacity:0;transform:translateY(20px);
+  animation: fadeUp 1s forwards;
+}
+.feature-card:nth-child(1){animation-delay:0.3s;}
+.feature-card:nth-child(2){animation-delay:0.6s;}
+.feature-card:nth-child(3){animation-delay:0.9s;}
+.feature-card:nth-child(4){animation-delay:1.2s;}
+.feature-card h3{color:var(--accent);margin-bottom:0.5rem;font-family:var(--font-secondary);}
+.feature-card p{font-size:0.95rem;color:#fff;line-height:1.5;}
+
+/* Call Us Button */
+.call-us{
+  position:fixed;bottom:30px;right:30px;background:var(--accent);color:#000;padding:1rem 1.5rem;border-radius:50px;font-weight:600;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,0.4);z-index:100;transition:0.3s;
+}
+.call-us:hover{
+  background:var(--accent-2);color:#fff;transform:scale(1.05);
+}
+
+/* Animations */
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes slideDown{from{opacity:0;transform:translateY(-30px);}to{opacity:1;transform:translateY(0);}}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(10px);}}
+@keyframes glow{0%{box-shadow:0 0 15px var(--accent);}100%{box-shadow:0 0 35px var(--accent-2);}}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
+
+@media(max-width:768px){
+  .hero h1{font-size:2.5rem;}
+  .hero p{font-size:1rem;}
+  nav.nav-links{ display:none; flex-direction:column; background: rgba(0,0,0,0.9); position:absolute; top:100%; right:0; padding:1.5rem 2rem; border-radius:15px; }
+  .mobile-toggle{ display:block; }
+  .features {grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<header class="navbar">
+  <a class="brand" href="home.html">Aangan Realestate</a>
+  <nav class="nav-links">
+    <a href="#hero">Home</a>
+    <a href="about.html">About</a>
+    <a href="properties.html">Properties</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button class="mobile-toggle">&#9776;</button>
+</header>
+
+<!-- Hero Section -->
+<section class="hero" id="hero">
+  <video autoplay muted loop playsinline>
+    <source src="https://media.istockphoto.com/id/1453963806/video/time-lapse-low-angle-of-tall-corporate-buildings-skyscraper-with-reflection-of-clouds-among.mp4?s=mp4-640x640-is&k=20&c=RIpYsVqpNXm-KOaMcpsMY80maM3p2SyEbjTTMxTqzz8=" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  
+  <div class="hero-content" id="heroContent">
+    <h1>Find Your Dream Home</h1>
+    <p>Discover luxury villas, modern apartments, and stylish homes in prime locations. Your dream property is just a click away.</p>
+    <button class="btn-primary" onclick="window.location.href='properties.html'">Explore Properties</button>
+  </div>
+
+  <div class="scroll-down">&#x2193;</div>
+</section>
+
+<!-- Features Section -->
+<section class="features" id="features">
+  <div class="feature-card">
+    <h3>Verified Listings</h3>
+    <p>All properties are verified and genuine to ensure safe investment.</p>
+  </div>
+  <div class="feature-card">
+    <h3>Flexible Visits</h3>
+    <p>Schedule visits according to your convenience with zero hassle.</p>
+  </div>
+  <div class="feature-card">
+    <h3>Premium Locations</h3>
+    <p>We offer properties in the most sought-after and prime areas.</p>
+  </div>
+  <div class="feature-card">
+    <h3>24/7 Support</h3>
+    <p>Our dedicated team is available anytime to assist your queries.</p>
+  </div>
+</section>
+
+<!-- Call Us Button -->
+<a href="tel:+919876543210" class="call-us">Call Us</a>
+
+<script>
+const heroContent=document.getElementById('heroContent');
+window.addEventListener('scroll',()=>{heroContent.style.transform=`translateY(${window.pageYOffset*0.3}px)`;});
+
+const mobBtn=document.querySelector(".mobile-toggle");
+const navLinks=document.querySelector(".nav-links");
+mobBtn.onclick=()=>navLinks.style.display=navLinks.style.display==="flex"?"none":"flex";
+</script>
+
+</body>
+</html>
